@@ -15,3 +15,5 @@ SOURCES += \
 
 LIBS += -lrabbitmq
 
+target.path = /usr/bin/
+INSTALLS += target
