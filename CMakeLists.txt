@@ -34,3 +34,17 @@ set_target_properties(amqp-send PROPERTIES
 )
 target_compile_options(amqp-send PRIVATE -Wall -Wextra -pedantic)
 install(TARGETS amqp-send DESTINATION bin)
+
+
+add_executable(amqp-receive
+        amqp-receive.cpp
+        ${common}
+)
+target_link_libraries(amqp-receive
+        rabbitmq
+)
+set_target_properties(amqp-receive PROPERTIES
+    CXX_STANDARD 11
+)
+target_compile_options(amqp-receive PRIVATE -Wall -Wextra -pedantic)
+install(TARGETS amqp-receive DESTINATION bin)
