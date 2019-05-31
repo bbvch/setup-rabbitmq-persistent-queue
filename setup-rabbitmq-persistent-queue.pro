@@ -15,7 +15,7 @@ HEADERS += \
     utility.h \
 
 SOURCES += \
-    main.cpp \
+    setup-rabbitmq-persistent-queue.cpp \
     utility.cpp \
 
 LIBS += -lrabbitmq
