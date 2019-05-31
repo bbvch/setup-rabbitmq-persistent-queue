@@ -20,3 +20,17 @@ set_target_properties(setup-rabbitmq-persistent-queue PROPERTIES
 )
 target_compile_options(setup-rabbitmq-persistent-queue PRIVATE -Wall -Wextra -pedantic)
 install(TARGETS setup-rabbitmq-persistent-queue DESTINATION bin)
+
+
+add_executable(amqp-send
+        amqp-send.cpp
+        ${common}
+)
+target_link_libraries(amqp-send
+        rabbitmq
+)
+set_target_properties(amqp-send PROPERTIES
+    CXX_STANDARD 11
+)
+target_compile_options(amqp-send PRIVATE -Wall -Wextra -pedantic)
+install(TARGETS amqp-send DESTINATION bin)
