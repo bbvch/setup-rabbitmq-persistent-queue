@@ -21,5 +21,5 @@ void destroy_connection(amqp_connection_state_t conn);
 void* connect(const amqp_connection_state_t conn, const std::string &hostname, uint16_t port);
 void disconnect(const amqp_connection_state_t conn);
 
-const int* create_channel(const amqp_connection_state_t &conn, int channel);
-void destroy_channel(const amqp_connection_state_t conn, const int *chptr);
+const amqp_channel_t *create_channel(const amqp_connection_state_t &conn, unsigned short channel);
+void destroy_channel(const amqp_connection_state_t conn, const amqp_channel_t *chptr);

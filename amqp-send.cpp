@@ -86,7 +86,7 @@ int main(int argc, char **argv)
   try {
     const std::unique_ptr<amqp_connection_state_t_, decltype(&destroy_connection)> conn{create_connection(), &destroy_connection};
     const std::unique_ptr<void, std::function<void(void*)>> open_connection{connect(conn.get(), hostname, port), [&conn](void*){disconnect(conn.get());}};
-    const std::unique_ptr<const int, std::function<void(const int*)>> channel{create_channel(conn.get(), channel_number), [&conn](const int *channel){destroy_channel(conn.get(), channel);}};
+    const std::unique_ptr<const amqp_channel_t, std::function<void(const amqp_channel_t*)>> channel{create_channel(conn.get(), channel_number), [&conn](const amqp_channel_t *channel){destroy_channel(conn.get(), channel);}};
 
 
     std::size_t messageNr = 0;

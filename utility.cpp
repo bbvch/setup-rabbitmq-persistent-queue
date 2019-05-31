@@ -89,9 +89,9 @@ void disconnect(const amqp_connection_state_t conn)
   amqp_connection_close(conn, AMQP_REPLY_SUCCESS);
 }
 
-const int* create_channel(const amqp_connection_state_t &conn, int channel)
+const amqp_channel_t* create_channel(const amqp_connection_state_t &conn, unsigned short channel)
 {
-  int *chptr = new int;
+  amqp_channel_t *chptr = new amqp_channel_t;
   *chptr = channel;
   amqp_channel_open(conn, *chptr);
   const auto res = amqp_get_rpc_reply(conn);
@@ -99,7 +99,7 @@ const int* create_channel(const amqp_connection_state_t &conn, int channel)
   return chptr;
 }
 
-void destroy_channel(const amqp_connection_state_t conn, const int *chptr)
+void destroy_channel(const amqp_connection_state_t conn, const amqp_channel_t *chptr)
 {
   amqp_channel_close(conn, *chptr, AMQP_REPLY_SUCCESS);
   delete chptr;
